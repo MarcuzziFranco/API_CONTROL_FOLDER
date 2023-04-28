@@ -2,6 +2,6 @@
 {
     public class Constans
     {
-        public static string PATH_FOLDER_DIRECTORY = "C:/Users/Franc/Desktop/DriveT";
+        public static string PATH_FOLDER_DIRECTORY = "C:/Users/Franc/Desktop/DriveT/";
     }
 }

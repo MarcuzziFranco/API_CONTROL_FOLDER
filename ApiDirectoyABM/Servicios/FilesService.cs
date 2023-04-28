@@ -44,7 +44,7 @@ namespace ApiDirectoyABM.Servicios
             
         }
 
-        public Result toDelete(FileObj fileObj)
+        public Result ToDelete(FileObj fileObj)
         {
             Result result;
             try

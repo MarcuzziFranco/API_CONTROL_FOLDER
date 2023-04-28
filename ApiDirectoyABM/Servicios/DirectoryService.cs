@@ -8,6 +8,8 @@ namespace ApiDirectoyABM.Servicios
 
         public PageDirectory getAllDirectorys(String currentPath)
         {
+            if (currentPath == null || currentPath == "") currentPath = Constans.PATH_FOLDER_DIRECTORY;
+
             List<string> listAll = new();
             List<string> listDirectorys = Directory.GetDirectories(currentPath).ToList();
             List<string> listFiles = Directory.GetFiles(currentPath).ToList();
@@ -29,20 +31,24 @@ namespace ApiDirectoyABM.Servicios
             List<DirectoryBase> listDirectorys = new();
             foreach (string file in listAll)
             {
-                string[] data = file.Split("\\");
-                DirectoryBase directoryBase = new DirectoryBase();
-                directoryBase.Path = data[0] + "/" + data[1];
-                directoryBase.Name = data[1];
-
-                if (directoryBase.Name.Contains('.')){
-                    directoryBase.Type= directoryBase.Name.Split('.')[1];
-                }
-                else
+                int index = file.LastIndexOf('/');
+                if(index != -1)
                 {
-                    directoryBase.Type= "Folder";
-                }
 
-                listDirectorys.Add(directoryBase);
+                    DirectoryBase directoryBase = new DirectoryBase();
+                    directoryBase.Path = file;
+                    directoryBase.Name = file[(index + 1)..];
+
+                    if (directoryBase.Name.Contains('.'))
+                    {
+                        directoryBase.Type = directoryBase.Name.Split('.')[1];
+                    }
+                    else
+                    {
+                        directoryBase.Type = "Folder";
+                    }
+                    listDirectorys.Add(directoryBase);
+                }
             }
             return listDirectorys;
         }
