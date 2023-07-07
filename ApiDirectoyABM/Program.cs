@@ -21,7 +21,7 @@ app.MapGet("/", () => {
     Debug.WriteLine("Online check");
     return "Online...";
 });
-app.MapGet("/help", () => JsonConvert.SerializeObject(new {saludo = "Estoy vivo!!!"}));
+app.MapGet("/help", () => JsonConvert.SerializeObject(new {msn = "Number of lifes:" + new Random().Next(1, 100).ToString() }));
 
 app.MapPost("api/create-folder/{name}",(string name) =>
 {

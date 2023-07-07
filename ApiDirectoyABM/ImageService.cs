@@ -15,11 +15,11 @@ namespace ApiDirectoyABM
             string statusService;
             try
             {
-                string imageExtensionFile = Tools.GetFileExtension(imageObj.data);
+                string imageExtensionFile = Tools.GetFileExtension(imageObj.dataBase64);
                 string imageNameFileComplete = imageObj.name + imageExtensionFile;
                 string path = Constans.PATH_FOLDER_DIRECTORY + "/" + imageNameFileComplete;
 
-                byte[] imageBytes = Convert.FromBase64String(imageObj.data);
+                byte[] imageBytes = Convert.FromBase64String(imageObj.dataBase64);
 
                 File.WriteAllBytes(path, imageBytes);
                 statusService = "Image saved successfully";
